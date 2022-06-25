@@ -9,6 +9,11 @@ const Formulario = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (![nombre, propietario, email, fecha, sintomas].includes('')) {
+    } else {
+      console.log("hay un campo vacio");
+    }
   };
 
   return (
