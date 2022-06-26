@@ -6,13 +6,15 @@ const Formulario = () => {
   const [email, setEmail] = useState('');
   const [fecha, setFecha] = useState('');
   const [sintomas, setSintomas] = useState('');
+  const [errorForm, setErrorForm] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (![nombre, propietario, email, fecha, sintomas].includes('')) {
+      setErrorForm(false);
     } else {
-      console.log("hay un campo vacio");
+      setErrorForm(true);
     }
   };
 
@@ -27,6 +29,11 @@ const Formulario = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-4"
       >
+        {errorForm && (
+          <div className='bg-red-800 text-white text-center p-2 font-bold mb-3 rounded-md'>
+            <p>Todos los campos requeridos</p>
+          </div>
+        )}
         <div className="mb-3">
           <label
             htmlFor="mascota"
