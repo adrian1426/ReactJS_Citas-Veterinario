@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ErrorMessage from './ErrorMessage';
 
 const Formulario = (props) => {
   const { setPacientes } = props;
@@ -48,11 +49,7 @@ const Formulario = (props) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-4"
       >
-        {errorForm && (
-          <div className='bg-red-800 text-white text-center p-2 font-bold mb-3 rounded-md'>
-            <p>Todos los campos requeridos</p>
-          </div>
-        )}
+        {errorForm && <ErrorMessage message='Todos los campos son requeridos' />}
         <div className="mb-3">
           <label
             htmlFor="mascota"
