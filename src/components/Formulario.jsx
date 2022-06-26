@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
-const Formulario = () => {
+const Formulario = (props) => {
+  const { setPacientes } = props;
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -8,11 +9,29 @@ const Formulario = () => {
   const [sintomas, setSintomas] = useState('');
   const [errorForm, setErrorForm] = useState(false);
 
+  const resetForm = () => {
+    setNombre('');
+    setPropietario('');
+    setEmail('');
+    setFecha('');
+    setSintomas('');
+    setErrorForm('');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (![nombre, propietario, email, fecha, sintomas].includes('')) {
+      const paciente = {
+        nombre,
+        propietario,
+        email,
+        fecha,
+        sintomas
+      };
+      setPacientes(pacientes => [paciente, ...pacientes]);
       setErrorForm(false);
+      resetForm();
     } else {
       setErrorForm(true);
     }
