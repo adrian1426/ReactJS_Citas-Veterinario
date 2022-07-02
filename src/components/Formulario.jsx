@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { uniqueID } from '../helpers';
 import ErrorMessage from './ErrorMessage';
 
 const Formulario = (props) => {
@@ -24,6 +25,7 @@ const Formulario = (props) => {
 
     if (![nombre, propietario, email, fecha, sintomas].includes('')) {
       const paciente = {
+        id: uniqueID(),
         nombre,
         propietario,
         email,
