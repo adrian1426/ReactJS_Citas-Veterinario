@@ -32,6 +32,20 @@ const ListadoPacientesItem = props => {
       >
         Sintomas: <span className="font-normal normal-case">{sintomas}</span>
       </p>
+
+      <div>
+        <button
+          className="py-1 px-5 text-white font-bold bg-indigo-600 hover:bg-indigo-700 rounded-md"
+        >
+          Editar
+        </button>
+
+        <button
+          className="py-1 px-5 ml-4 text-white font-bold bg-red-600 hover:bg-red-700 rounded-md"
+        >
+          Eliminar
+        </button>
+      </div>
     </div>
   );
 };
