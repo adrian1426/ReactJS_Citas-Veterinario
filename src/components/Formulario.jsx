@@ -49,7 +49,7 @@ const Formulario = (props) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-md py-5 px-5 mb-4"
       >
-        {errorForm && <ErrorMessage message='Todos los campos son requeridos' />}
+        {errorForm && <ErrorMessage>Todos los campos son requeridos</ErrorMessage>}
         <div className="mb-3">
           <label
             htmlFor="mascota"
