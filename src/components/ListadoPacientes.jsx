@@ -1,7 +1,7 @@
 import ListadoPacientesItem from "./ListadoPacientesItem";
 
 const ListadoPacientes = (props) => {
-  const { pacientes } = props;
+  const { pacientes, setPacienteEdit } = props;
 
   const tituloListaPacientes = pacientes.length === 0 ? 'No hay pacientes' : 'Lista de pacientes';
   const textoListaPacientes = pacientes.length === 0 ? 'Debes agregar tus' : 'Administra tus';
@@ -18,6 +18,7 @@ const ListadoPacientes = (props) => {
           <ListadoPacientesItem
             key={paciente.id}
             paciente={paciente}
+            setPacienteEdit={setPacienteEdit}
           />
         )
       })}

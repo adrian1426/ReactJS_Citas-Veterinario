@@ -1,5 +1,9 @@
 const ListadoPacientesItem = props => {
-  const { paciente: { nombre, propietario, email, fecha, sintomas } } = props;
+  const { paciente: { nombre, propietario, email, fecha, sintomas }, setPacienteEdit } = props;
+
+  const onClickEdit = () => {
+    setPacienteEdit(props.paciente);
+  };
 
   return (
     <div className="mt-4 ml-2 px-4 py-4 bg-white shadow-md rounded-md">
@@ -36,6 +40,7 @@ const ListadoPacientesItem = props => {
       <div>
         <button
           className="py-1 px-5 text-white font-bold bg-indigo-600 hover:bg-indigo-700 rounded-md"
+          onClick={onClickEdit}
         >
           Editar
         </button>

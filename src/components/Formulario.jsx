@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { uniqueID } from '../helpers';
 import ErrorMessage from './ErrorMessage';
 
 const Formulario = (props) => {
-  const { setPacientes } = props;
+  const { setPacientes, pacienteEdit, setPacienteEdit } = props;
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +18,20 @@ const Formulario = (props) => {
     setFecha('');
     setSintomas('');
     setErrorForm('');
+
+    setPacienteEdit({});
   };
+
+  const fillOutForm = () => {
+    const { nombre, propietario, email, fecha, sintomas } = pacienteEdit;
+    setNombre(nombre);
+    setPropietario(propietario);
+    setEmail(email);
+    setFecha(fecha);
+    setSintomas(sintomas);
+  };
+
+  const isEditActive = Object.entries(pacienteEdit).length > 0;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,13 +45,36 @@ const Formulario = (props) => {
         fecha,
         sintomas
       };
-      setPacientes(pacientes => [paciente, ...pacientes]);
+
+      setPacientes(pacientes => {
+        if (!isEditActive) {
+          return [paciente, ...pacientes];
+        } else {
+          return pacientes.map(p => {
+            if (p.id === pacienteEdit.id) {
+              return {
+                ...paciente,
+                id: p.id
+              }
+            } else {
+              return p;
+            }
+          });
+        }
+      });
+
       setErrorForm(false);
       resetForm();
     } else {
       setErrorForm(true);
     }
   };
+
+  useEffect(() => {
+    if (isEditActive) {
+      fillOutForm();
+    }
+  }, [pacienteEdit]);
 
   return (
     <div className="md:w-1/2 lg:w-2/5">
@@ -133,7 +169,7 @@ const Formulario = (props) => {
 
         <input
           type="submit"
-          value="Registrar"
+          value={!isEditActive ? 'Registrar' : 'Editar'}
           className="bg-indigo-600 w-full p-2 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer"
         />
       </form>

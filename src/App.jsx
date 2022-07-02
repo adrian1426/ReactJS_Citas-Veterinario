@@ -5,6 +5,7 @@ import ListadoPacientes from './components/ListadoPacientes';
 
 function App() {
   const [pacientes, setPacientes] = useState([]);
+  const [pacienteEdit, setPacienteEdit] = useState({});
 
   return (
     <div className='container mx-auto mt-5'>
@@ -12,9 +13,12 @@ function App() {
       <div className='mt-4 md:flex'>
         <Formulario
           setPacientes={setPacientes}
+          pacienteEdit={pacienteEdit}
+          setPacienteEdit={setPacienteEdit}
         />
         <ListadoPacientes
           pacientes={pacientes}
+          setPacienteEdit={setPacienteEdit}
         />
       </div>
     </div>
