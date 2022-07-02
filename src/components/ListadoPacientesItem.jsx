@@ -1,8 +1,12 @@
 const ListadoPacientesItem = props => {
-  const { paciente: { nombre, propietario, email, fecha, sintomas }, setPacienteEdit } = props;
+  const { paciente: { nombre, propietario, email, fecha, sintomas, id }, setPacienteEdit, setPacientes } = props;
 
   const onClickEdit = () => {
     setPacienteEdit(props.paciente);
+  };
+
+  const onClickDelete = () => {
+    setPacientes(pacientes => pacientes.filter(p => p.id !== id));
   };
 
   return (
@@ -47,6 +51,7 @@ const ListadoPacientesItem = props => {
 
         <button
           className="py-1 px-5 ml-4 text-white font-bold bg-red-600 hover:bg-red-700 rounded-md"
+          onClick={onClickDelete}
         >
           Eliminar
         </button>
