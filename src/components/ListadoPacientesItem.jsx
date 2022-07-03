@@ -6,7 +6,11 @@ const ListadoPacientesItem = props => {
   };
 
   const onClickDelete = () => {
-    setPacientes(pacientes => pacientes.filter(p => p.id !== id));
+    const responseDelete = confirm('¿Está seguro de eliminar el paciente?');
+
+    if (responseDelete) {
+      setPacientes(pacientes => pacientes.filter(p => p.id !== id));
+    }
   };
 
   return (
